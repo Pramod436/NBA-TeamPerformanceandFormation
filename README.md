@@ -15,6 +15,7 @@ A comprehensive data science and machine learning framework designed to evaluate
 * **Pramod Nair** — Email: `pnair16@asu.edu` | GitHub: [@Pramod436](https://github.com/Pramod436)
 * **Ansh Motwani** — Email: `ansh.motwani.2@gmail.com` | GitHub: [@AnshMotwani](https://github.com/AnshMotwani)
 * **Ishan Mehta** — GitHub: [@mehtaishan205](https://github.com/mehtaishan205)
+* **Namita Ravi** — GitHub: [@ravinamita](https://github.com/ravinamita)
 
 ---
 
