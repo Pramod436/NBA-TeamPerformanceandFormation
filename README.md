@@ -1,180 +1,196 @@
-# NBA Team Performance and Formation Analysis
+# NBA Team Performance & Lineup Formation Analysis
 
-## Project Overview
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML_Pipeline-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![pandas](https://img.shields.io/badge/pandas-Data_Analysis-150458?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-F37626?style=flat&logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This project is a comprehensive machine learning analysis of NBA player performance data to optimize team formations and predict team impact scores. The system uses advanced clustering algorithms and predictive modeling to identify the best 5-player combinations that maximize team performance.
+A comprehensive data science and machine learning framework designed to evaluate 22 years of NBA player performance statistics (2000–2022), perform unsupervised player clustering into functional archetypes, and predict optimal 5-player lineup combinations that maximize team impact scores.
 
-## Key Features
+---
 
-- **Player Clustering**: Uses K-Means and Hierarchical clustering to group players based on performance metrics
-- **Dimensionality Reduction**: Implements PCA (Principal Component Analysis) to reduce feature complexity
-- **Team Formation Optimization**: Finds optimal 5-player combinations using combinatorial analysis
-- **Impact Score Prediction**: Random Forest model to predict team performance impact scores
-- **Comprehensive EDA**: Extensive exploratory data analysis with visualizations
-- **Performance Metrics**: Advanced basketball analytics including offensive/defensive ratings, usage rates, and more
+## 👥 Authors & Collaborators
 
-## Dataset
+* **Pramod Nair** — Email: `pnair16@asu.edu` | GitHub: [@Pramod436](https://github.com/Pramod436)
+* **Ansh Motwani** — Email: `ansh.motwani.2@gmail.com` | GitHub: [@AnshMotwani](https://github.com/AnshMotwani)
 
-The project analyzes NBA player data from 2000-2022, including:
-- **Advanced Metrics**: Offensive/Defensive Ratings, Net Rating, Assist %, etc.
-- **Usage Statistics**: Usage rates for rebounds, assists, turnovers, steals, blocks
-- **Performance Indicators**: Various basketball performance metrics
-- **Temporal Data**: Year-wise player performance tracking
+---
 
-## Technologies Used
+## 📌 Executive Summary
 
-- **Python 3.x**
-- **Machine Learning**: scikit-learn, Random Forest, K-Means, Hierarchical Clustering
-- **Data Processing**: pandas, numpy
-- **Visualization**: matplotlib, seaborn
-- **Dimensionality Reduction**: PCA
-- **Model Evaluation**: MSE, R² Score, Silhouette Score
+Modern basketball analytics has evolved beyond traditional positions (Point Guard, Shooting Guard, Small Forward, Power Forward, Center) toward role-based functional archetypes. This project builds an end-to-end data analytics and predictive modeling pipeline to:
 
-## Project Structure
+1. **Dimensionality Reduction**: Reduce 50+ complex statistical features to 13 principal components using **PCA**, capturing over 95% of overall data variance.
+2. **Unsupervised Player Clustering**: Segment NBA players into 10 distinct operational clusters using **K-Means** and **Hierarchical Clustering**, validated via Elbow and Silhouette analysis.
+3. **Supervised Impact Score Modeling**: Train a **Random Forest Regressor** to predict team impact scores based on player archetype compositions.
+4. **Combinatorial Lineup Optimization**: Evaluate all possible 5-player team formations to determine optimal lineup synergy and peak performance scores.
 
+---
+
+## 🏗️ Pipeline Architecture
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│              Raw NBA Player Statistics (2000–2022)              │
+│       (Offensive/Defensive Ratings, Net Ratings, Usage %)       │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │
+                                 v
+┌─────────────────────────────────────────────────────────────────┐
+│            Feature Engineering & Preprocessing (EDA)            │
+│         (Standardization, Handling Outliers & Nulls)            │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │
+                                 v
+┌─────────────────────────────────────────────────────────────────┐
+│             Principal Component Analysis (PCA)                  │
+│       (50+ Features ──> 13 Principal Components, >95% Var)      │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │
+                                 v
+┌─────────────────────────────────────────────────────────────────┐
+│              Unsupervised Player Clustering                     │
+│    ┌───────────────────────────┐   ┌────────────────────────┐   │
+│    │    K-Means Clustering     │   │Hierarchical Clustering │   │
+│    │     (10 Archetypes)       │   │    (Dendrogram/Agglo)   │   │
+│    └───────────────────────────┘   └────────────────────────┘   │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │
+                                 v
+┌─────────────────────────────────────────────────────────────────┐
+│        Supervised Predictive Modeling & Lineup Synergy          │
+│            (Random Forest Regressor ──> Impact Score)           │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │
+                                 v
+┌─────────────────────────────────────────────────────────────────┐
+│             Optimal 5-Player Lineup Selection                   │
+└─────────────────────────────────────────────────────────────────┘
 ```
-SML-TeamPerformanceandFormation/
-├── Dataset/                     # Raw and processed data files
-│   ├── all_data.csv            # Main dataset
-│   ├── EDA.ipynb               # Exploratory Data Analysis
-│   └── *.xlsx                  # Processed datasets
-├── code/                       # Clustering analysis
-│   ├── Clustering.ipynb        # Main clustering notebook
-│   └── *.png                   # Visualization outputs
-├── mastercode/                 # Core modeling
-│   ├── model.ipynb             # Main prediction model
-│   └── *.xlsx                  # Model datasets
-├── results/                    # Analysis outputs
-│   ├── *.xlsx                  # Cluster results
-│   └── Merge.ipynb             # Results consolidation
-├── src/                        # Production code structure
-│   ├── components/             # ML pipeline components
-│   ├── pipeline/               # Training and prediction pipelines
-│   ├── exception.py            # Custom exception handling
-│   └── logger.py               # Logging functionality
-├── requirements.txt            # Python dependencies
-├── setup.py                    # Package configuration
-└── README.md                   # This file
+
+---
+
+## 📊 Dataset & Metrics
+
+The project analyzes comprehensive player statistics spanning **2000–2022 NBA seasons**:
+
+* **Advanced Performance Metrics:** Offensive Rating (`ORtg`), Defensive Rating (`DRtg`), Net Rating (`NetRtg`), Assist Percentage (`AST%`), Rebound Percentage (`TRB%`).
+* **Usage & Efficiency Statistics:** Usage Rates (`USG%`), Turnover Rate (`TOV%`), Steal Rate (`STL%`), Block Rate (`BLK%`), True Shooting Percentage (`TS%`).
+* **Temporal Tracking:** Year-over-year player progression and multi-season performance trends.
+
+---
+
+## 🧮 Machine Learning Methodology
+
+### 1. Feature Engineering & PCA
+* Standardized 50+ raw features to eliminate scaling bias.
+* Applied Principal Component Analysis (PCA), identifying **13 principal components** that retain **95%+ cumulative explained variance**.
+* Reduced noise while preserving non-linear player variance.
+
+### 2. Clustering & Archetype Identification
+* Evaluated **K-Means** vs. **Agglomerative Hierarchical Clustering**.
+* Determined optimal cluster count ($K=10$) via **Elbow Method** and **Silhouette Score analysis**.
+* Grouped players into 10 tactical roles (e.g., Elite Playmakers, 3-and-D Specialists, Paint Protectors, High-Usage Scoring Wings).
+
+### 3. Predictive Modeling & Optimization
+* Trained a **Random Forest Regressor** to predict team impact metrics.
+* Conducted combinatorial evaluation of candidate 5-player formations to find lineup synergies with maximum projected impact.
+
+---
+
+## 📈 Key Results & Metrics
+
+* **Model R² Score:** `0.4446`
+* **Mean Squared Error (MSE):** `33.4351`
+* **Top Contributing PCA Features:**
+  * `PCA_1`: **14.03%**
+  * `PCA_2`: **11.18%**
+  * `PCA_6`: **10.78%**
+* **Clustering Outcome:** Successfully grouped players into 10 stable, interpretable operational archetypes.
+
+---
+
+## 📂 Repository Structure
+
+```text
+NBA-TeamPerformanceandFormation/
+├── Dataset/                     # Raw and cleaned NBA datasets (2000-2022)
+│   ├── all_data.csv             # Primary player dataset
+│   ├── EDA.ipynb                # Exploratory Data Analysis notebook
+│   └── *.xlsx                   # Processed data tables
+├── code/                        # Clustering analysis & visualization
+│   ├── Clustering.ipynb         # K-Means and Hierarchical Clustering notebook
+│   ├── elbow_plot.png           # K-Means Elbow plot output
+│   └── silhouette_score_*.png   # Silhouette analysis visualizations
+├── mastercode/                  # Predictive modeling pipeline
+│   ├── model.ipynb              # Random Forest training & evaluation
+│   └── *.xlsx                   # Feature-engineered dataset files
+├── results/                     # Optimal team formation outputs
+│   ├── Merge.ipynb              # Consolidation & lineup merging script
+│   └── *.xlsx                   # Cluster assignment tables
+├── src/                         # Modular production package structure
+│   ├── components/              # Ingestion, transformation, training modules
+│   ├── pipeline/                # End-to-end training and prediction pipelines
+│   ├── exception.py             # Custom error handling
+│   └── logger.py                # Logging utility
+├── requirements.txt             # Python package dependencies
+├── setup.py                     # Python package installer
+├── LICENSE                      # MIT License
+└── README.md                    # Project documentation
 ```
 
-## Installation
+---
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd SML-TeamPerformanceandFormation
-   ```
+## 🚀 Quick Start Guide
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Setup the package**
-   ```bash
-   pip install -e .
-   ```
-
-## Usage
-
-### 1. Exploratory Data Analysis
+### 1. Prerequisites & Environment Setup
+Clone your fork and install dependencies:
 ```bash
-# Navigate to Dataset directory and run EDA notebook
+git clone https://github.com/Pramod436/NBA-TeamPerformanceandFormation.git
+cd NBA-TeamPerformanceandFormation
+
+# Install dependencies
+pip install -r requirements.txt
+pip install -e .
+```
+
+### 2. Execution Order
+
+#### Step 1: Exploratory Data Analysis
+```bash
 cd Dataset
 jupyter notebook EDA.ipynb
 ```
 
-### 2. Clustering Analysis
+#### Step 2: Unsupervised Clustering (PCA & K-Means / Hierarchical)
 ```bash
-# Navigate to code directory and run clustering notebook
-cd code
+cd ../code
 jupyter notebook Clustering.ipynb
 ```
 
-### 3. Model Training and Prediction
+#### Step 3: Predictive Model Training (Random Forest)
 ```bash
-# Navigate to mastercode directory and run model notebook
-cd mastercode
+cd ../mastercode
 jupyter notebook model.ipynb
 ```
 
-### 4. Results Analysis
+#### Step 4: Results Merge & Optimal Lineup Evaluation
 ```bash
-# Navigate to results directory and run merge notebook
-cd results
+cd ../results
 jupyter notebook Merge.ipynb
 ```
 
-## Methodology
+---
 
-### 1. Data Preprocessing
-- **Feature Engineering**: Created comprehensive player performance metrics
-- **Data Cleaning**: Handled missing values and outliers
-- **Standardization**: Normalized features for clustering
+## 💡 Practical Applications
 
-### 2. Dimensionality Reduction
-- **PCA Implementation**: Reduced 50+ features to 13 principal components
-- **Variance Explained**: Captured 95%+ of data variance
-- **Feature Selection**: Identified most important performance indicators
-
-### 3. Clustering Analysis
-- **K-Means Clustering**: Grouped players into 10 clusters based on performance
-- **Hierarchical Clustering**: Alternative clustering approach for comparison
-- **Silhouette Analysis**: Evaluated clustering quality
-- **Elbow Method**: Determined optimal number of clusters
-
-### 4. Predictive Modeling
-- **Random Forest Regressor**: Predicted team impact scores
-- **Feature Importance**: Identified key performance drivers
-- **Model Validation**: Used train-test split with R² and MSE metrics
-
-### 5. Team Formation Optimization
-- **Combinatorial Analysis**: Evaluated all possible 5-player combinations
-- **Impact Score Prediction**: Predicted performance for each team combination
-- **Optimal Team Selection**: Identified best performing team formations
-
-## Results
-
-### Model Performance
-- **Validation R² Score**: 0.4446
-- **Validation MSE**: 33.4351
-- **Feature Importance**: PCA_1 (14.03%), PCA_2 (11.18%), PCA_6 (10.78%)
-
-### Key Findings
-- **Player Clustering**: Successfully grouped players into 10 distinct performance clusters
-- **Team Optimization**: Identified optimal 5-player combinations for maximum impact
-- **Performance Prediction**: Reliable prediction of team performance scores
-
-## Applications
-
-- **Sports Analytics**: NBA team management and player selection
-- **Fantasy Sports**: Optimize fantasy team selections
-- **Recruitment**: Identify players with complementary skills
-- **Performance Analysis**: Understand team chemistry and synergy
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-**Ansh Motwani**
-- Email: ansh.motwani.2@gmail.com
-
-## Acknowledgments
-
-- NBA for providing comprehensive player statistics
-- Scikit-learn community for excellent ML tools
-- Basketball analytics community for insights and methodologies
+* **NBA Front Office Analytics:** Evaluate free-agent synergy and complement existing core players.
+* **Lineup Optimization:** Identify high-efficiency 5-player lineups based on functional balance.
+* **Fantasy Sports Analytics:** Build data-driven fantasy rosters leveraging projected impact scores.
 
 ---
 
-**Note**: This project is for educational and research purposes. All NBA data used is publicly available and for analysis purposes only.
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
